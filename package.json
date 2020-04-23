@@ -9,7 +9,8 @@
     "test": "jest",
     "build": "rimraf dist && tsc",
     "format:write": "prettier --write \"src/**/*.{ts,js}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,js}\""
+    "format:check": "prettier --check \"src/**/*.{ts,js}\"",
+    "deploy": "git pull && npm run build && pm2 restart ecboard"
   },
   "repository": {
     "type": "git",
