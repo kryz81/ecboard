@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import helmet from 'koa-helmet';
 import cors from '@koa/cors';
+import auth from '../middleware/auth';
 import Router from './Router';
 
 export default class App {
@@ -17,6 +18,7 @@ export default class App {
 
     app.use(helmet());
     app.use(cors());
+    app.use(auth);
 
     const koaRouter = this.router.registerRoutes();
 
