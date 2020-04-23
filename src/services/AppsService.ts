@@ -32,7 +32,7 @@ export default class AppsService {
       pid: process.pid!,
       app: {
         name: process.name || '',
-        port: (process.pm2_env as EnvObject)?.APP_PORT,
+        port: Number((process.pm2_env as EnvObject)?.APP_PORT),
       },
     }));
   }
