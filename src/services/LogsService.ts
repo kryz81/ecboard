@@ -32,7 +32,7 @@ export default class LogsService {
       let data = '';
       stream
         .on('error', (err) => reject(err))
-        .on('data', (chunk) => data + chunk)
+        .on('data', (chunk) => (data += chunk))
         .on('end', () => resolve(data));
     });
   }
