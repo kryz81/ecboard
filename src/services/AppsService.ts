@@ -27,9 +27,9 @@ export default class AppsService {
     });
   }
 
-  getProcess(processId: number): Promise<ProcessDescription[]> {
+  getProcess(appName: string): Promise<ProcessDescription[]> {
     return new Promise((resolve, reject) => {
-      pm2.describe(processId, (err, process) => {
+      pm2.describe(appName, (err, process) => {
         if (err) {
           return reject(err);
         }

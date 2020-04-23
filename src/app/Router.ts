@@ -11,7 +11,7 @@ export default class Router {
 
   registerRoutes(prefix = '/api'): KoaRouter {
     this.koaRouter.prefix(prefix);
-    this.koaRouter.get('/apps', AppsHandler.list).get('/logs/:id', LogsHandler.details);
+    this.koaRouter.get('/apps', AppsHandler.list).get('/logs/:appName', LogsHandler.details);
 
     return this.koaRouter;
   }

@@ -4,8 +4,8 @@ import AppsService from './AppsService';
 export default class LogsService {
   constructor(private appsService: AppsService) {}
 
-  async getErrorLog(processId: number): Promise<string | undefined> {
-    const [process] = await this.appsService.getProcess(processId);
+  async getErrorLog(appName: string): Promise<string | undefined> {
+    const [process] = await this.appsService.getProcess(appName);
 
     if (!process) {
       throw new Error('Process not found');
