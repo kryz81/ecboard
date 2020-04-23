@@ -13,7 +13,7 @@ interface EnvObject {
 }
 
 export default class AppsService {
-  getProcessList(verbose = false) {
+  getProcessList(verbose = false): Promise<ProcessDescription[] | ProcessInfo[]> {
     return new Promise((resolve, reject) => {
       pm2.list((err, processes) => {
         if (err) {
@@ -23,6 +23,17 @@ export default class AppsService {
           return resolve(processes);
         }
         resolve(this.createProcessInfo(processes));
+      });
+    });
+  }
+
+  getProcess(processId: number): Promise<ProcessDescription[]> {
+    return new Promise((resolve, reject) => {
+      pm2.describe(processId, (err, process) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(process);
       });
     });
   }
