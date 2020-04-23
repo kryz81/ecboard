@@ -4,7 +4,7 @@ import AppsService from './AppsService';
 export default class LogsService {
   constructor(private appsService: AppsService) {}
 
-  async getLog(appName: string): Promise<string[] | undefined[]> {
+  async getLog(appName: string, logLength = 1000): Promise<string[] | undefined[]> {
     const [process] = await this.appsService.getProcess(appName);
 
     if (!process) {
@@ -17,22 +17,27 @@ export default class LogsService {
     const actions = [];
 
     if (errorPath) {
-      actions.push(this.getData(errorPath));
+      actions.push(this.getData(errorPath, logLength));
     }
     if (outPath) {
-      actions.push(this.getData(outPath));
+      actions.push(this.getData(outPath, logLength));
     }
 
     return await Promise.all(actions);
   }
 
-  private getData(filePath: string): Promise<string> {
+  private getData(filePath: string, logLengthChars: number | undefined): Promise<string> {
     return new Promise((resolve, reject) => {
       const stream = createReadStream(filePath, 'utf-8');
       let data = '';
       stream
         .on('error', (err) => reject(err))
-        .on('data', (chunk) => (data += chunk))
+        .on('data', (chunk) => {
+          data += chunk;
+          if (logLengthChars && data.length >= logLengthChars) {
+            stream.destroy();
+          }
+        })
         .on('end', () => resolve(data));
     });
   }
