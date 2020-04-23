@@ -1,0 +1,45 @@
+{
+  "name": "ecboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start:dev": "tsc-watch --noClear --onSuccess 'node -r dotenv/config dist/index.js'",
+    "start:prod": "node dist/index.js",
+    "test": "jest",
+    "build": "rimraf dist && tsc",
+    "format:write": "prettier --write \"src/**/*.{ts,js}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kryz81/ecboard.git"
+  },
+  "author": "kryz <info@webentwickler.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kryz81/ecboard/issues"
+  },
+  "homepage": "https://github.com/kryz81/ecboard#readme",
+  "dependencies": {
+    "@koa/cors": "3.0.0",
+    "koa": "2.11.0",
+    "koa-helmet": "5.2.0",
+    "koa-router": "8.0.8",
+    "pm2": "4.3.1"
+  },
+  "devDependencies": {
+    "@types/jest": "25.2.1",
+    "@types/koa": "2.11.3",
+    "@types/koa-helmet": "5.2.0",
+    "@types/koa-router": "7.4.0",
+    "@types/koa__cors": "3.0.1",
+    "dotenv": "8.2.0",
+    "jest": "25.4.0",
+    "prettier": "2.0.5",
+    "rimraf": "3.0.2",
+    "ts-jest": "25.4.0",
+    "tsc-watch": "4.2.3",
+    "typescript": "3.8.3"
+  }
+}
