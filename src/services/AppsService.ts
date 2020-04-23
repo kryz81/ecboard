@@ -22,6 +22,7 @@ export default class AppsService {
         if (verbose) {
           return resolve(processes);
         }
+        resolve(this.createProcessInfo(processes));
       });
     });
   }
