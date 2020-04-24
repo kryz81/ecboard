@@ -1,6 +1,6 @@
 <template>
   <div class="_margin-bottom-2">
-    <i-badge :variant="healthcheck ? 'success' : 'danger'">MongoDB</i-badge>
+    <i-badge :variant="healthcheck.mongodb ? 'success' : 'danger'">MongoDB</i-badge>
   </div>
 </template>
 
