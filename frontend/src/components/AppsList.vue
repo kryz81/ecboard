@@ -5,6 +5,7 @@
         <th>PID</th>
         <th>Application</th>
         <th>Port</th>
+        <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -13,6 +14,9 @@
         <th scope="row">{{ item.pid }}</th>
         <td>{{ item.app.name }}</td>
         <td>{{ item.app.port }}</td>
+        <td>
+          <i-badge :variant="item.status === 'online' ? 'success' : 'danger'">{{ item.status }}</i-badge>
+        </td>
         <td>
           <router-link to="/logs/bistravel.pl">
             <i-button variant="secondary" title="Logs">
